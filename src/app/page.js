@@ -4,6 +4,8 @@ import Header from '@/components/Header';
 import './style.scss';
 import HorizontalScroll from '@/components/HorizontalScroll/HorizontalScroll';
 import CustomCursor from '@/components/Cursor/CustomCursor';
+import Skills from '@/components/Skills/Skills';
+import Experirence from '@/components/Experience/Experirence';
 
 
 export default function Home() {
@@ -13,6 +15,8 @@ export default function Home() {
       <CustomCursor/>
       {/* <MainPreloader/> */}
       <HorizontalScroll/>
+      <Skills/>
+      <Experirence/>
       
     </main>
   )

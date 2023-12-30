@@ -8,6 +8,31 @@ import Splitting from 'splitting';
 
 function HorizontalScroll() {
     let isGsapInit = false;
+
+    const perspectiveAnimations = [useRef(), useRef()];
+    useEffect(() => {
+        perspectiveAnimations.forEach((ref, index) => {
+        if (ref.current) {
+            // Set initial styles
+            gsap.set(ref.current, {
+                opacity: 0,
+                transform: `translate3d(0px, 60%, -5vw) scale3d(1, 1, 1) rotateX(-100deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`,
+                transformStyle: 'preserve-3d',
+            });
+
+            // Animate to new styles
+            gsap.to(ref.current, {
+                duration: 0.9,
+                transform: `translate3d(0px, 0%, 0vw) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)`,
+                transformStyle: 'preserve-3d',
+                opacity: '1',
+                ease: 'power2.inOut',
+                repeat: 0,
+                delay: index === 1 ? 0.5 : 0,
+            });
+        }
+        });
+    }, []);
    
     useEffect(() => {
         if(!isGsapInit){
@@ -15,6 +40,7 @@ function HorizontalScroll() {
             gsap.registerPlugin(ScrollTrigger);
 
             setTimeout(() => {
+                // Text Reveal
                 const splitText = Splitting({ target: '.about__content-wrapper' });
                 // Use gsap.from within a ScrollTrigger
                 gsap.from(".char", {
@@ -28,7 +54,7 @@ function HorizontalScroll() {
                     scrollTrigger: {
                         trigger: ".char-container", 
                         start: "top", // Adjust as needed
-                        end: "bottom", // Adjust as needed
+                        end: "center center", // Adjust as needed
                         scrub: 0.6,
                         // markers: true,
                     },
@@ -45,16 +71,16 @@ function HorizontalScroll() {
                     scrollTrigger: {
                         trigger: ".char-container",
                         start: "top", // Adjust as needed
-                        end: 'bottom', // Adjust as needed
+                        end: 'center center', // Adjust as needed
                         scrub: .6,
-                        markers: true,
+                        // markers: true,
                     },
                 });
+                // Text Reveal
 
             
+                // Horizontal Scroll
                 let horizontalSection = document.querySelector('.about__content--scroll');
-                console.log('horizontalSection.scrollWidth', horizontalSection.scrollWidth, horizontalSection.scrollWidth * -1);
-                
             
                 gsap.to('.about__content--scroll', {
                     x: () => horizontalSection.scrollWidth * -1,
@@ -65,8 +91,6 @@ function HorizontalScroll() {
                         end: '+=2000px',
                         pin: '.about__hero',
                         scrub: .6,
-                        // markers: true,
-                        // invalidateOnRefresh: true
                     }
                 });
 
@@ -79,17 +103,15 @@ function HorizontalScroll() {
     }, [])
 
   return (
-    <>
-
     <section className='about__hero'>
         <div className='about__content about__content--scroll' style={{ display: 'flex' }}>
             {/* Name */}
             <div className='about__content__main'>
                 <h1 className='text-8xl font-bold text-center'>
-                    <span className='md:pr-4 lg:pr-8'>
+                    <span className='md:pr-4 lg:pr-8' ref={perspectiveAnimations[0]}>
                         MOHD     
                     </span>
-                    <span>
+                    <span ref={perspectiveAnimations[1]}>
                         IRFAN
                     </span>
                 </h1>
@@ -123,33 +145,6 @@ function HorizontalScroll() {
             </div>
         </div>
     </section>
-
-    <section className="scroll-section-outer">
-      {/* The section up act just as a wrapper. If the trigger (below) is the
-      first jsx element in the component, you get an error on route change */}
-
-      {/* The div below act just as a trigger. As the doc suggests, the trigger and 
-      the animation should alway be two separated refs */}
-      <div>
-        <div className="scroll-section-inner">
-          <div className="scroll-section">
-            <h3>Section 1</h3>
-          </div>
-          <div className="scroll-section">
-            <h3>Section 2</h3>
-          </div>
-          <div className="scroll-section">
-            <h3>Section 3</h3>
-          </div>
-          <div className="scroll-section">
-            <h3>Section 4</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    </>
   )
 }
 

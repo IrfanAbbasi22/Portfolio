@@ -5,15 +5,22 @@ $black: #000;
 // Main About Section
 .about__hero {
     overflow: hidden;
-    background-color: $bg-primary;
+    // background-color: $bg-primary;
     // background: $bg-primary;
 
     // color: $white;
-
-    
+    background-color: #DCD9D4;
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+    background-blend-mode: soft-light,screen;
     h1{
 
     }
+}
+
+body{
+    background-color: #DCD9D4;
+ background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+ background-blend-mode: soft-light,screen;
 }
 
 .about__content {
