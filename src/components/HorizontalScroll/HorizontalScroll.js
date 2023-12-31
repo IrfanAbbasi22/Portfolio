@@ -29,9 +29,26 @@ function HorizontalScroll() {
                 ease: 'power2.inOut',
                 repeat: 0,
                 delay: index === 1 ? 0.5 : 0,
+
+                onComplete: () => {
+                    gsap.to('.bottom--top', {
+                        y: 0,
+                        opacity: '1',
+                        delay: .5,
+                        ease: 'power2.inOut',
+                    });
+                }
             });
         }
         });
+
+        // Set initial styles
+        gsap.set('.bottom--top', {
+            y: 100,
+            opacity: 0,
+        });
+
+        
     }, []);
    
     useEffect(() => {
@@ -93,8 +110,7 @@ function HorizontalScroll() {
                         scrub: .6,
                     }
                 });
-
-                console.log('2horizontalSection.scrollWidth', horizontalSection.scrollWidth, horizontalSection.scrollWidth * -1);
+                // Horizontal scroll ends
             }, 2000);
         }
 
@@ -106,39 +122,43 @@ function HorizontalScroll() {
     <section className='about__hero'>
         <div className='about__content about__content--scroll' style={{ display: 'flex' }}>
             {/* Name */}
-            <div className='about__content__main'>
-                <h1 className='text-8xl font-bold text-center'>
-                    <span className='md:pr-4 lg:pr-8' ref={perspectiveAnimations[0]}>
-                        MOHD     
-                    </span>
-                    <span ref={perspectiveAnimations[1]}>
-                        IRFAN
-                    </span>
-                </h1>
-
-                .
+            <div className='about__content__main p-4'>
+                <div className='max-w-max mx-auto w-full -mt-6'>
+                    <p className='pl-2 -mb-2 bottom--top'>
+                        Hi, my name is
+                    </p>
+                    <h1 className='text-8xl font-bold text-center leading-[0.8]'>
+                        <span className='md:pr-4 lg:pr-8' ref={perspectiveAnimations[0]}>
+                            MOHD     
+                        </span>
+                        <span ref={perspectiveAnimations[1]}>
+                            IRFAN
+                        </span>
+                    </h1>
+                </div>
             </div>
 
             {/* Developer Content */}
-            <p className='about__content-wrapper' datasplitting="char">
-                is a front-end developer
+            <p className='about__content-wrapper p-4 md:px-[6.25rem] flex items-center justify-center h-[100vh] whitespace-nowrap text-[4rem] md:text-[9vw]' datasplitting="char">
+                & I'm a Front-End Developer
             </p>
 
             {/* Personal Content */}
-            <div className='about-me__content'>
-                <div className='about-me__content__cover flex'>
-                    <h2>
+            <div className='about-me__content flex-[0_0_100%] min-w-full min-h-[100vh] py-20 px-4 flex items-center justify-center'>
+                <div className='about-me__content__cover md:max-w-[90%] md:mx-auto'>
+                    <h2 className='text-[3.5rem] lg:text-[4.5rem] leading-none font-bold mb-10 lg:mb-20'>
                         Know More About Me!
                     </h2>
                     
-                    <p className='self-end'>
-                        Dimitri is a young developer living in Belgium
-                        more precisely in Brussels specialized with Wordpress and
-                        React/Next.js. In each project, i focus on animations,
-                        layout and interactions, so that users have a
-                        pleasant experience on websites. In addition to my
-                        work, i enjoy doing sports like basketball or
-                        skateboarding.
+                    <p className='self-end leading-loose md:text-[1.2rem]'>
+                        Hello, I'm <span className='font-medium'>Mohd Irfan</span>, an enthusiastic and creative 
+                        <span className='font-medium'> Front-End Developer</span> based in New Delhi. With a robust knowledge of web development, 
+                        I am committed to crafting user-friendly and visually appealing web experiences.
+                    
+                        Throughout my enriching career journey, I've been fortunate to contribute my skills to a variety of exciting projects, 
+                        from building responsive e-commerce websites to developing interactive web applications.
+                        
+                        Through my work, I've sharpened my skills and kept up with the latest in front-end tech and trends. When I'm not coding, you'll find me outdoors or enjoying video games.
                     </p>
                 </div>
 

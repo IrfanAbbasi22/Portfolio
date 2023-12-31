@@ -12,7 +12,53 @@ function Skills() {
         "Github",
     ];
 
+    useEffect(() => {
+        setTimeout(() => {
+            // const { innerHeight } = window;
+            // gsap.from(".skills__container > h2", {
+            //     scale: 50,
+            //     stager: 0.2,
+            //     // duration: 3,
+            //     // opacity: 0,
+                
+            //     scrollTrigger: {
+            //         trigger: ".skills", 
+            //         start: "top top",
+            //         end: `+=${innerHeight * 1.3} bottom`,
+            //         // end: `bottom`,
+            //         scrub: true,
+            //         // pin: true,
+            //         markers: true,
+            //     },
+            // });
+
+
+            // gsap.to('.skills__container > h2', {
+            //     // y: -100,
+            //     y: "100%",
+            //     // opacity: 0,
+            //     stagger: {
+            //         each: 0.1,
+            //         from: "left",
+            //         grid: "auto",
+            //     },
+            //     scrollTrigger: {
+            //         trigger: ".skills",
+            //         start: "top", // Adjust as needed
+            //         end: 'bottom top', // Adjust as needed
+            //         scrub: .6,
+            //         markers: true,
+
+            //         onEnter: function(){
+            //             alert('hihi');
+            //         }
+            //     },
+            // });
+        }, 2000);
+    }, []);
+
     
+    // Magnetic Effect Starts
     useEffect(() => {
         const magnets = document.querySelectorAll('.magnetic');
         
@@ -54,10 +100,11 @@ function Skills() {
             });
         }
     }, []);
+    // Magnetic Effect Ends
 
 
     return (
-        <section className='skills py-20 px-4'>
+        <section className='skills py-20 px-4 min-h-[100dvh] overflow-hidden flex items-center justify-center'>
             <div className='skills__container md:max-w-[90%] lg:max-w-[60%] md:mx-auto'>
                 <h2 className='text-[3.5rem] font-bold text-center mb-10 lg:text-[4.5rem]'>
                     Skills & Tools
